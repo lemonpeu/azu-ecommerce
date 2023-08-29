@@ -9,17 +9,7 @@ interface CategoryProps {
 const Category = ({ category, pagination }: CategoryProps) => {
   return (
     <Link href={`/${pagination}`}>
-      <article className="flex items-center flex-col mr-2 article p-3">
-        <style jsx>
-          {`
-            .article {
-              min-width: 150px;
-            }
-            @media (min-width: 768px) {
-              min-width: 200px;
-            }
-          `}
-        </style>
+      <article className="flex items-center flex-col mr-2 p-3 rounded-sm overflow-hidden min-w-[150px] md:min-w-[200px]">
         <Image
           src="/Images/icon.jpg"
           width={100}

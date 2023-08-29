@@ -12,7 +12,10 @@ export default function Home() {
     <main className={`${roboto_Mono.className} p-4`}>
       <div className="mb-4">
         <Nav />
-        <Header />
+        <div className="flex justify-center md:justify-start">
+          <Header />
+        </div>
+        
       </div>
       {false && (
         <div className="sales">

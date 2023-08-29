@@ -6,15 +6,15 @@ interface CardProps {
 
 const Card = ({price}: CardProps) => {
     return (
-        <article className="w-3/6 box-border pr-2">
+        <article className="w-[150px] md:w-[250px] box-border pr-2 flex flex-col align-middle justify-center overflow-hidden">
             <Image
                 src="/Images/image1.jpg"
-                width={200}
-                height={200}
+                width={150}
+                height={150}
                 alt="Picture of the author"
             />
-            <p className="my-2">${price}.00</p>
-            <p className="text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            {price && <p className="my-2">${price}.00</p>}
+            <p className="text-xs md:text-sm text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
         </article>
     )
 }

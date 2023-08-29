@@ -8,7 +8,7 @@ const ProductsSection = ({ title }: ProductsSection) => {
   return (
     <section className="mt-4">
       <h1 className="text-teal-600 font-bold text-center">{title}</h1>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap md:justify-start justify-center space-x-3 space-y-3">
         <Card price={35} />
         <Card price={35} />
         <Card price={35} />
