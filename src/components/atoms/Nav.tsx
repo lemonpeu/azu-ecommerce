@@ -47,8 +47,8 @@ const Nav = () => {
         </button>
       </div>
       <ul className={`md:flex md:items-center md:z-auto md:static absolute bg-white w-full left-0  md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ${showMenu ? "top-[50px] opacity-100" : ""}`}>
-        {navItems.map((item) => (
-          <li className="mx-4 my-6 md:my-0">
+        {navItems.map((item, key) => (
+          <li className="mx-4 my-6 md:my-0" key={key}>
             <a className="bottom-2 hover:bg-[#C1DCDC] duration-500">
               {item}
             </a>
