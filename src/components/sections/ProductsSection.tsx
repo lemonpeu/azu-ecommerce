@@ -2,23 +2,15 @@ import Card from "@/components/atoms/Card";
 
 interface ProductsSection {
   title: string;
+  llaveros: object[]
 }
 
-const ProductsSection = ({ title }: ProductsSection) => {
+const ProductsSection = ({ title, llaveros }: ProductsSection) => {
   return (
     <section className="mt-4">
       <h1 className="text-teal-600 font-bold text-center">{title}</h1>
       <div className="flex flex-wrap md:justify-start justify-center space-x-3 space-y-3">
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
-        <Card price={35} />
+        {llaveros && llaveros.map((llaveros, key) => <Card price={35} key={key} imagesSrc={"http://127.0.0.1:1336" + llaveros.attributes.url}/>)}
       </div>
       <div id="pagination" className="flex justify-center mt-8">
         <button>

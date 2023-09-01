@@ -1,14 +1,15 @@
 import Image from "next/image"
 
 interface CardProps {
-    price?: number
+    price?: number,
+    imagesSrc: string,
 }
 
-const Card = ({price}: CardProps) => {
+const Card = ({price, imagesSrc}: CardProps) => {
     return (
         <article className="w-[150px] md:w-[250px] box-border pr-2 flex flex-col align-middle justify-center overflow-hidden">
             <Image
-                src="/Images/image1.jpg"
+                src={imagesSrc}
                 width={150}
                 height={150}
                 alt="Picture of the author"
