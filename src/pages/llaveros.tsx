@@ -7,7 +7,7 @@ import { fetcher } from "../../lib/api";
 
 const roboto_Mono = Roboto_Mono({ subsets: ["latin"] });
 
-const Products = ({llaveros}) => {
+const Products = ({items}) => {
   return (
     <div className="p-4">
       <div className={roboto_Mono.className}>
@@ -16,7 +16,7 @@ const Products = ({llaveros}) => {
           className="border-teal-400 rounded-md border-2 text-sm"
           placeholder="Buscá por nombre"
         />
-        <ProductsSection llaveros={llaveros} title="Llaveros" />
+        {items && <ProductsSection products={items} title="Keychains" />}
       </div>
     </div>
   );
@@ -25,10 +25,11 @@ const Products = ({llaveros}) => {
 export default Products;
 
 export async function getStaticProps() {
-  const llaverosResponse = await fetcher(`${process.env.NEXT_PUBLIC_STRAPI_URL}/Foto-llaveros?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/products?populate=deep`);
+  const products = await response.json();
   return {
     props: {
-      llaveros: llaverosResponse.data[0].attributes.llaveros.data
+      items: products.data
     }
   }
 }

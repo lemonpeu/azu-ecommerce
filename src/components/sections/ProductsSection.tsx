@@ -1,16 +1,40 @@
 import Card from "@/components/atoms/Card";
 
-interface ProductsSection {
-  title: string;
-  llaveros: object[]
+interface Product {
+  itemphoto?: {
+    data?: {
+      attributes?: {
+        url?: string;
+      };
+    };
+  };
 }
 
-const ProductsSection = ({ title, llaveros }: ProductsSection) => {
+interface ProductsSection {
+  title: string;
+  products: Product[];
+}
+
+const ProductsSection = ({ title, products }: ProductsSection) => {
   return (
-    <section className="mt-4">
-      <h1 className="text-teal-600 font-bold text-center">{title}</h1>
-      <div className="flex flex-wrap md:justify-start justify-center space-x-3 space-y-3">
-        {llaveros && llaveros.map((llaveros, key) => <Card price={35} key={key} imagesSrc={"http://127.0.0.1:1336" + llaveros.attributes.url}/>)}
+    <section className="mt-4 ">
+      <h1 className="text-gray-950 font-bold text-center mb-4">{title}</h1>
+      <div className="flex flex-wrap md:justify-start justify-center">
+        {products &&
+          products.map((product, key) => (
+            <div className="md:mr-6 mb-6" key={product.id}>
+              <Card
+                price={35}
+                key={product.id}
+                imagesSrc={
+                  "http://127.0.0.1:1336" +
+                  product?.attributes?.product?.photo?.data?.attributes?.url
+                }
+                description={product?.attributes?.product?.description}
+                price={product?.attributes?.product?.price}
+              />
+            </div>
+          ))}
       </div>
       <div id="pagination" className="flex justify-center mt-8">
         <button>

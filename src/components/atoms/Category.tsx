@@ -10,12 +10,15 @@ const Category = ({ category, pagination }: CategoryProps) => {
   return (
     <Link href={`/${pagination}`}>
       <article className="flex items-center flex-col mr-2 p-3 rounded-sm overflow-hidden min-w-[150px] md:min-w-[200px]">
-        <Image
-          src="/Images/icon.jpg"
-          width={100}
-          height={100}
-          alt="Picture of the author"
-        />
+        <div className="w-full max-w-[100px] h-[100px] overflow-hidden relative p-2 rounded-lg">
+          <Image
+            src="/Images/categorysample.jpg"
+            layout="fill"
+            objectFit="cover"
+            alt="Picture of the author"
+          />
+        </div>
+
         <p>{category}</p>
       </article>
     </Link>
