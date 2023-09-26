@@ -7,7 +7,11 @@ import { fetcher } from "../../lib/api";
 
 const roboto_Mono = Roboto_Mono({ subsets: ["latin"] });
 
-const Products = ({items}) => {
+interface Products {
+  items: [] | any
+}
+
+const Products = ({items}: Products) => {
   return (
     <div className="p-4">
       <div className={roboto_Mono.className}>

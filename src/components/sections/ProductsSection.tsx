@@ -1,11 +1,18 @@
 import Card from "@/components/atoms/Card";
 
 interface Product {
-  itemphoto?: {
-    data?: {
-      attributes?: {
-        url?: string;
+  id: number;
+  attributes?: {
+    product: {
+      photo: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
       };
+      description: string;
+      price: number;
     };
   };
 }
@@ -21,16 +28,19 @@ const ProductsSection = ({ title, products }: ProductsSection) => {
       <h1 className="text-gray-950 font-bold text-center mb-4">{title}</h1>
       <div className="flex flex-wrap md:justify-start justify-center">
         {products &&
-          products.map((product, key) => (
+          products.map((product: Product, key) => (
             <div className="md:mr-6 mb-6" key={product.id}>
               <Card
-                price={35}
                 key={product.id}
                 imagesSrc={`${
-                  ("http://127.0.0.1:1336" +
-                  product?.attributes?.product?.photo?.data?.attributes?.url) || "/Images/skull.jpg"}`
+                  "http://127.0.0.1:1336" +
+                    product?.attributes?.product?.photo?.data?.attributes
+                      ?.url || "/Images/skull.jpg"
+                }`}
+                description={
+                  product?.attributes?.product?.description ||
+                  "Lorem lorem lorem lorem lorem"
                 }
-                description={product?.attributes?.product?.description || "Lorem lorem lorem lorem lorem"}
                 price={product?.attributes?.product?.price || 10}
               />
             </div>
