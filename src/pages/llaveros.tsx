@@ -29,9 +29,8 @@ const Products = ({ items }: Products) => {
 export default Products;
 
 export async function getStaticProps() {
-  try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/products?populate=deep`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=deep`
     );
     const products = await response.json();
     return {
@@ -39,11 +38,4 @@ export async function getStaticProps() {
         items: products.data,
       },
     };
-  } catch (e) {
-    return {
-      props: {
-        items: [],
-      },
-    };
-  }
 }

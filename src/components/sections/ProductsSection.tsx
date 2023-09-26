@@ -14,7 +14,7 @@ interface Product {
       description: string;
       price: number;
     };
-  };
+  } | any;
 }
 
 interface ProductsSection {
@@ -23,28 +23,32 @@ interface ProductsSection {
 }
 
 const ProductsSection = ({ title, products }: ProductsSection) => {
+  console.log(products)
   return (
     <section className="mt-4 ">
       <h1 className="text-gray-950 font-bold text-center mb-4">{title}</h1>
       <div className="flex flex-wrap md:justify-start justify-center">
         {products &&
-          products.map((product: Product, key) => (
-            <div className="md:mr-6 mb-6" key={product.id}>
-              <Card
-                key={product.id}
-                imagesSrc={`${
-                  "http://127.0.0.1:1336" +
-                    product?.attributes?.product?.photo?.data?.attributes
-                      ?.url || "/Images/skull.jpg"
-                }`}
-                description={
-                  product?.attributes?.product?.description ||
-                  "Lorem lorem lorem lorem lorem"
-                }
-                price={product?.attributes?.product?.price || 10}
-              />
-            </div>
-          ))}
+          products.map((product: Product, key) => {
+            console.log("Product", product)
+            return (
+              <div className="md:mr-6 mb-6" key={product.id}>
+                <Card
+                  key={product.id}
+                  imagesSrc={
+                    process.env.NEXT_PUBLIC_STRAPI_URL +
+                      product?.attributes?.product?.photo?.data?.attributes
+                        ?.url || "/Images/skull.jpg"
+                  }
+                  description={
+                    product?.attributes?.product?.description ||
+                    "Lorem lorem lorem lorem lorem"
+                  }
+                  price={product?.attributes?.product?.price || 10}
+                />
+              </div>
+            )
+          })}
       </div>
       <div id="pagination" className="flex justify-center mt-8">
         <button>
