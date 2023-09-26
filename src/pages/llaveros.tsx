@@ -8,10 +8,10 @@ import { fetcher } from "../../lib/api";
 const roboto_Mono = Roboto_Mono({ subsets: ["latin"] });
 
 interface Products {
-  items: [] | any
+  items: [] | any;
 }
 
-const Products = ({items}: Products) => {
+const Products = ({ items }: Products) => {
   return (
     <div className="p-4">
       <div className={roboto_Mono.className}>
@@ -29,11 +29,21 @@ const Products = ({items}: Products) => {
 export default Products;
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/products?populate=deep`);
-  const products = await response.json();
-  return {
-    props: {
-      items: products.data
-    }
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/products?populate=deep`
+    );
+    const products = await response.json();
+    return {
+      props: {
+        items: products.data,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        items: [],
+      },
+    };
   }
 }
