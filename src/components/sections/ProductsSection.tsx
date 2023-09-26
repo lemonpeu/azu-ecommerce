@@ -26,12 +26,12 @@ const ProductsSection = ({ title, products }: ProductsSection) => {
               <Card
                 price={35}
                 key={product.id}
-                imagesSrc={
-                  "http://127.0.0.1:1336" +
-                  product?.attributes?.product?.photo?.data?.attributes?.url
+                imagesSrc={`${
+                  ("http://127.0.0.1:1336" +
+                  product?.attributes?.product?.photo?.data?.attributes?.url) || "/Images/skull.jpg"}`
                 }
-                description={product?.attributes?.product?.description}
-                price={product?.attributes?.product?.price}
+                description={product?.attributes?.product?.description || "Lorem lorem lorem lorem lorem"}
+                price={product?.attributes?.product?.price || 10}
               />
             </div>
           ))}
